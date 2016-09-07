@@ -3,6 +3,7 @@
 @import "../bower_components/angular-material/angular-material.min.css";
 @import "../bower_components/tinymce-dist/skins/lightgray/content.min.css";
 @import "../bower_components/tinymce-dist/skins/lightgray/skin.min.css";
+$mainColor: #0072ff;
 body {
 
 }
@@ -107,7 +108,7 @@ float: left;
 padding: .5rem .75rem;
 margin-left: -1px;
 line-height: 1.5;
-color: #0275d8;
+color: $mainColor;
 text-decoration: none;
 background-color: #fff;
 border: 1px solid #ddd;
@@ -126,7 +127,7 @@ border-radius: .25rem;
 
 .chipsdemoBasicUsage .errors {
   font-size: 12px;
-  color: #dd2c00;
+  color: $mainColor;
   margin-top: 10px; }
 
 .chipsdemoBasicUsage .custom-chips md-chip {
@@ -187,7 +188,7 @@ border-radius: .25rem;
     padding: 0 20px;
 }
 li.pagination-page.ng-scope.active a {
-    background: #0275d8;
+    background: $mainColor;
     color: white;
 }
 
@@ -216,6 +217,19 @@ li.pagination-page.ng-scope.active a {
 }
 .w200{
   width: 200px;
+}
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar),.md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab {
+  background-color: $mainColor;
+}
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover {
+  background-color: darken($mainColor, 10%);
+}
+.md-button.md-default-theme.md-warn.md-raised, .md-button.md-warn.md-raised, .md-button.md-default-theme.md-warn.md-fab, .md-button.md-warn.md-fab,a.md-button.md-default-theme.md-warn.md-raised, a.md-button.md-warn.md-raised, a.md-button.md-default-theme.md-warn.md-fab, a.md-button.md-warn.md-fab, .md-button.md-default-theme.md-warn.md-raised, .md-button.md-warn.md-raised, .md-button.md-default-theme.md-warn.md-fab, .md-button.md-warn.md-fab {
+    color: $mainColor;
+    background-color: white;
+}
+.md-button.md-default-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-warn.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-warn.md-fab:not([disabled]):hover, .md-button.md-warn.md-fab:not([disabled]):hover, a.md-button.md-default-theme.md-warn.md-raised:not([disabled]):hover, a.md-button.md-warn.md-raised:not([disabled]):hover, a.md-button.md-default-theme.md-warn.md-fab:not([disabled]):hover, a.md-button.md-warn.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-warn.md-raised:not([disabled]):hover, .md-button.md-warn.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-warn.md-fab:not([disabled]):hover, .md-button.md-warn.md-fab:not([disabled]):hover {
+  background-color: darken(white,10%);
 }
 /*
 Copyright 2016 Google Inc. All Rights Reserved.

@@ -16,21 +16,21 @@ firstapp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
         .state('login', {
         url: "/login",
-        templateUrl: "views/template.html",
-        controller: 'jsonViewCtrl'
+        templateUrl: "views/login.html",
+        controller: 'LoginCtrl'
     })
-    //
-    // .state('users', {
-    //     url: "/users",
-    //     templateUrl: "views/template.html",
-    //     controller: 'UsersCtrl'
-    // })
-    //
-    // .state('projects', {
-    //     url: "/projects",
-    //     templateUrl: "views/template.html",
-    //     controller: 'ProjectsCtrl'
-    // })
+
+    .state('users', {
+        url: "/users",
+        templateUrl: "views/template.html",
+        controller: 'UsersCtrl'
+    })
+
+    .state('projects', {
+        url: "/projects",
+        templateUrl: "views/template.html",
+        controller: 'ProjectsCtrl'
+    })
 
     .state('api', {
         url: "/api/:id",
@@ -55,7 +55,8 @@ firstapp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         controller: 'jsonViewCtrl'
     });
 
-    $urlRouterProvider.otherwise("/page/viewUserDetails");
+    $urlRouterProvider.otherwise("/login");
+
 });
 
 firstapp.filter('uploadpath', function() {

@@ -5,30 +5,27 @@ var search='';
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable', 'angular-clipboard', 'imageupload', 'ui.bootstrap', 'ui.tinymce'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout, $state) {
-    $scope.menutitle = NavigationService.makeactive("users");
+    $scope.menutitle = NavigationService.makeactive("Login");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.successmsg = "";
-    $state.go("page", {
-        //jsonName: "userView"
-        jsonName: "viewUserDetails"
-    });
-    // $scope.user = '';
-    // $scope.submitLogin = function(user) {
-    //     NavigationService.submitLogin(user, function(data) {
-    //         console.log(data);
-    //         if (data.value === true) {
-    //             $state.go("page", {
-    //                 jsonName: "viewMovie"
-    //             });
-    //             $.jStorage.set("user", data);
-    //         } else if (data.value === false) {
-    //             $scope.successmsg = "Email or Password is wrong";
-    //         }
-    //     }, function() {
-    //         console.log("Fail");
-    //     });
-    // };
+
+    $scope.user = '';
+    $scope.submitLogin = function(user) {
+        NavigationService.submitLogin(user, function(data) {
+            console.log(data);
+            if (data.value === true) {
+                $state.go("page", {
+                    jsonName: "viewMovie"
+                });
+                $.jStorage.set("user", data);
+            } else if (data.value === false) {
+                $scope.successmsg = "Email or Password is wrong";
+            }
+        }, function() {
+            console.log("Fail");
+        });
+    };
 })
 
 .controller('UsersCtrl', function($scope, TemplateService, NavigationService, $timeout) {
@@ -42,19 +39,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log(data);
     };
 })
-
-.controller('UserDetailsCtrl', function($scope, TemplateService, NavigationService, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("userdetails");
-    $scope.menutitle = NavigationService.makeactive("UserDetails");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-    $scope.field = {};
-    $scope.onimageupload = function(data) {
-        console.log(data);
-    };
-})
-
 
 .controller('jsonViewCtrl', function($scope, $location, TemplateService, NavigationService, $timeout, $stateParams, $http, $state, $filter, $mdDialog) {
     $scope.back = function() {
@@ -80,7 +64,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     var jsonArr = $stateParams.jsonName.split("¢");
-    console.log(jsonArr[0]);
     var jsonName = jsonArr[0];
     var urlParams = {};
     $scope.dropdown = {};
@@ -312,9 +295,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                   NavigationService.findProjects($scope.apiName, $scope.pagination, function(findData) {
                       console.log(findData);
                       if (findData.value !== false) {
-                          if (findData.data && findData.data.results && findData.data.results.length > 0) {
-                              $scope.pageInfo.lastpage = findData.data.totalpages;
-                              $scope.pageInfo.pagenumber = findData.data.pagenumber;
+                          if (findData.data  && findData.data.results && findData.data.results.length > 0) {
+                              $scope.pageInfo.lastpage = findData.data.total;
+                              $scope.pageInfo.pagenumber = findData.data.options.start;
                               $scope.pageInfo.totalitems = $scope.pagination.pagesize * findData.data.totalpages;
                               $scope.json.tableData = findData.data.results;
                           } else {
@@ -775,8 +758,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
     });
-    if ($.jStorage.get("user") === null) {
-        $state.go("login");
-    }
+    // if ($.jStorage.get("user") === null) {
+    //     $state.go("login");
+    // }
 
 });

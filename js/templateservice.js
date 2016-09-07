@@ -29,5 +29,7 @@ templateservicemod.service('TemplateService', function() {
         data.content = "views/type/" + page + ".html";
         return data;
     };
+
     this.init();
+
 });
